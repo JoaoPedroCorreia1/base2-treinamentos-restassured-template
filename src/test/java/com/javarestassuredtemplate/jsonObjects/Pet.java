@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pet {
-    private long id;
+    private int id;
     private Category category;
     private String name;
     private String[] photoUrls;

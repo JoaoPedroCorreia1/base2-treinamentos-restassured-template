@@ -11,31 +11,17 @@ public class GetPetTests extends TestBase {
     GetPetRequest getPetRequest;
 
     @Test
-    public void buscarPetExistente(){
+    public void buscarPetInexistente(){
         //Parâmetros
-        int petId = 9999;
-        int statusCodeEsperado = HttpStatus.SC_OK;
-        int categoryId = 9999;
-        String categoryName = "felinos";
-        String name = "Shepherd";
-        String photoUrl = "http://photodogatito.com/image123.png";
-        int tagId = 9999;
-        String tagName = "macho";
-        String status = "available";
+        long petId = 01;
 
+        int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
         //Fluxo
         getPetRequest = new GetPetRequest(petId);
         ValidatableResponse response = getPetRequest.executeRequest();
 
         //Asserções
         response.statusCode(statusCodeEsperado);
-        response.body("id",equalTo(petId),
-                "category.id", equalTo(categoryId),
-                        "category.name", equalTo(categoryName),
-                        "name", equalTo(name),
-                        "photoUrls[0]", equalTo(photoUrl),
-                        "tags[0].id", equalTo(tagId),
-                        "tags[0].name", equalTo(tagName),
-                        "status", equalTo(status));
+        response.body("message", equalTo("Pet not found"));
     }
 }

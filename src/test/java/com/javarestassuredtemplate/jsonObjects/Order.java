@@ -9,7 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tag {
-    private int id;
-    private String name;
+public class Order {
+    private long id;
+    private long petId;
+    private int quantity;
+    private String shipDate;
+    private String status;
+    private boolean complete;
 }
