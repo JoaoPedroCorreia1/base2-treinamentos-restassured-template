@@ -13,7 +13,7 @@ public class GetPetTests extends TestBase {
     @Test
     public void buscarPetInexistente(){
         //Parâmetros
-        long petId = 01;
+        long petId = 99999812313L;
 
         int statusCodeEsperado = HttpStatus.SC_NOT_FOUND;
         //Fluxo

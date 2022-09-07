@@ -17,7 +17,6 @@ public class PutPetTests extends TestBase {
     public void atualizarDadosDePetExistente() {
         //Parâmetros
         int idPet = 1;
-
         int idCategoryEditado = 1;
         String nameCategoryEditado = "category editada";
         String nameEditado = "name editado";
@@ -43,6 +42,29 @@ public class PutPetTests extends TestBase {
                 "tags[0].id", equalTo(idTagEditado),
                 "tags[0].name", equalTo(nameTagEditado),
                 "status", equalTo(statusEditado));
+    }
 
+    @Test
+    public void atualizarDadosDePetComIdComFormatoInvalido() {
+        //Parâmetros
+        String idPet = "string";
+        String idCategoryEditado = "1";
+        String nameCategoryEditado = "category editada";
+        String nameEditado = "name editado";
+        String photoUrlEditado = "url editada";
+        String idTagEditado = "2";
+        String nameTagEditado = "tag editada";
+        String statusEditado = "pending";
+
+        int statusCodeEsperado = HttpStatus.SC_BAD_REQUEST;
+
+        //Fluxo
+        putPetRequest = new PutPetRequest();
+        putPetRequest.setJsonBodyUsingJsonFileNoTypeCheck(idPet, idCategoryEditado, nameCategoryEditado,
+                nameEditado, photoUrlEditado, idTagEditado, nameTagEditado, statusEditado);
+        ValidatableResponse response = putPetRequest.executeRequest();
+
+        //Asserções
+        response.statusCode(statusCodeEsperado);
     }
 }
